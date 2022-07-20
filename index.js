@@ -3,6 +3,8 @@ const notifier = require('node-notifier');
 var cron = require('node-cron');
 var config = require('./conf.json');
 
+const refresh_period = 10;
+
 const getCaseDetails = async () => {
     const url = config.url;
     const cookie = config.cookie;
@@ -34,8 +36,7 @@ const handleResponse = (caseUpdate) => {
 }
 
 getCaseDetails();
-cron.schedule('*/10 * * * *', () => {
-    // running every 15 minute
+cron.schedule(`*/${refresh_period} * * * *`, () => {
     getCaseDetails();
 });
 
