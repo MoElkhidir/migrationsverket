@@ -18,4 +18,5 @@ This small app helps you fetch the status of your Migrationsverket application p
 
 ## Example Result
 If everything is set right, you should see a notification like this:
+
 ![Notification](./resources/notification.png)
