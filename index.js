@@ -24,6 +24,7 @@ const getCaseDetails = async () => {
     } catch (error) {
         console.log("failed to fetch status update!");
         console.log(error);
+        handleError();
     }
 }
 
@@ -33,6 +34,10 @@ const handleResponse = (caseUpdate) => {
 
     const notificationMessage = `Case Decided?: ${isDecided === true ? 'Yes' : 'No'}\nLatest Event: ${latestEvent}`
     notifier.notify(notificationMessage);
+}
+
+const handleError = () => {
+    notifier.notify("ERROR :(, check the logs!")
 }
 
 getCaseDetails();
