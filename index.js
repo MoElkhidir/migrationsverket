@@ -13,8 +13,16 @@ const getCaseDetails = async () => {
             X_XSRF_TOKEN: xrfToken
         }
     });
-    console.log("Fetched update successfully");
-    handleResponse(await response.json());
+
+    var responseBody = null;
+    try {
+        responseBody = await response.json();
+        console.log("Fetched update successfully");
+        handleResponse(responseBody);
+    } catch (error) {
+        console.log("failed to fetch status update!");
+        console.log(error);
+    }
 }
 
 const handleResponse = (caseUpdate) => {
@@ -26,7 +34,7 @@ const handleResponse = (caseUpdate) => {
 }
 
 getCaseDetails();
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/10 * * * *', () => {
     // running every 15 minute
     getCaseDetails();
 });
